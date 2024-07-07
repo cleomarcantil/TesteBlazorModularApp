@@ -1,0 +1,36 @@
+{
+  "profiles": {
+    "TesteBlazorModularApp": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50273;http://localhost:50274"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    },
+    "IIS": {
+      "commandName": "IIS",
+      "launchBrowser": true
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/Teste",
+      "sslPort": 0
+    },
+    "iisExpress": {
+      //"applicationUrl": "http://localhost:51771/",
+      "applicationUrl": "http://localhost/Teste",
+      "sslPort": 44311
+    }
+  }
+}
