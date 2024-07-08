@@ -24,40 +24,44 @@
 
 
 <script>
-    const desktopMinWidth = 960;
-    const sidebarMobileOpenedClass = 'sidebar-mobile-opened';
-    const sidebarDesktopClosedClass = 'sidebar-desktop-closed';
+    if (typeof pageElementToggleClass !== undefined) {
 
-    function pageElementToggleClass(className, activate) {
-        let pageElement = document.getElementsByClassName('page')[0];
+        function pageElementToggleClass(className, activate) {
+            let pageElement = document.getElementsByClassName('page')[0];
 
-        activate ??= !pageElement.classList.contains(className);
-        pageElement.classList.toggle(className, activate);
-    }
-
-    function sidebarToggle(open, className) {
-        if (window.innerWidth > desktopMinWidth) {
-            pageElementToggleClass(sidebarDesktopClosedClass);
-        } else {
-            pageElementToggleClass(sidebarMobileOpenedClass);
+            activate ??= !pageElement.classList.contains(className);
+            pageElement.classList.toggle(className, activate);
         }
-    }
 
-    window.matchMedia(`(min-width: ${desktopMinWidth}px)`)
-        .addListener((e) => {
-            if (e.matches) {
-                pageElementToggleClass(sidebarMobileOpenedClass, false);
+        const desktopMinWidth = 960;
+        const sidebarMobileOpenedClass = 'sidebar-mobile-opened';
+        const sidebarDesktopClosedClass = 'sidebar-desktop-closed';
+
+        function sidebarToggle(open, className) {
+            if (window.innerWidth > desktopMinWidth) {
+                pageElementToggleClass(sidebarDesktopClosedClass);
+            } else {
+                pageElementToggleClass(sidebarMobileOpenedClass);
             }
+        }
 
-        });
+        window.matchMedia(`(min-width: ${desktopMinWidth}px)`)
+            .addListener((e) => {
+                if (e.matches) {
+                    pageElementToggleClass(sidebarMobileOpenedClass, false);
+                }
+            });
 
-    document.querySelector('.page')
-        .addEventListener('click', (e) => {
-            if (e.target.classList.contains('sidebar-mobile-opened')) {
-                console.log(e.target);
-                pageElementToggleClass(sidebarMobileOpenedClass, false);
-            }        
-        });
+        document.querySelector('.page')
+            .addEventListener('click', (e) => {
+                if (e.target.classList.contains('sidebar-mobile-opened')) {
+                    pageElementToggleClass(sidebarMobileOpenedClass, false);
+                }
+            });
+
+        document.querySelector('aside')
+            .addEventListener('click', (e) => pageElementToggleClass(sidebarMobileOpenedClass, false));
+    }
 </script>
 
 
